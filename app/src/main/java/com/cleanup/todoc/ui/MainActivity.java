@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -89,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @NonNull
     private TextView lblNoTasks;
 
+    // 1 - FILE PURPOSE
+
+    private static final String FILENAME = "tripBook.txt";
+
+    private static final String FOLDERNAME = "bookTrip";
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +115,30 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 showAddTaskDialog();
             }
         });
+
+        // 6 - Read from storage when starting
+
+        readFromStorage();
+    }
+
+    // -------------------
+
+        // UI
+
+        // -------------------
+
+    private void initView() {
+
+        CompoundButton.OnCheckedChangeListener checkedChangeListener = (button, isChecked) -> {
+
+            if (isChecked) {
+
+            }
+
+            readFromStorage();
+
+        };
+
     }
 
     @Override
@@ -115,6 +147,11 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         return true;
     }
 
+    /**
+     * Ajout de onglet dans le menu
+     *  - share
+     *  - save
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -127,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             sortMethod = SortMethod.OLD_FIRST;
         } else if (id == R.id.filter_recent_first) {
             sortMethod = SortMethod.RECENT_FIRST;
+        } else if (id == R.id.action_share) {
+            return true;
+        } else if (id == R.id.action_save) {
+            return true;
         }
 
         updateTasks();
@@ -321,4 +362,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
          */
         NONE
     }
+
+
+
 }

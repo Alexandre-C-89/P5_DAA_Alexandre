@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 31
     defaultConfig {
-        applicationId "com.cleanup.todoc"
+        applicationId "com.example.p5_daa_alexandre"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
