@@ -10,9 +10,7 @@ import androidx.room.PrimaryKey;
 import java.util.Comparator;
 
 /**
- * <p>Model for the tasks of the application.</p>
- *
- * @author Gaëtan HERFRAY
+ * Task correspond à Item dans le cours OC
  */
 @Entity(foreignKeys = @ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "projectId"))
 public class Task {
@@ -23,20 +21,19 @@ public class Task {
     private long id;
 
     /**
-     * The unique identifier of the project associated to the task
+     * Cette id me permet de savoir à quel
+     * projet cette tâche est affecter
      */
     private long projectId;
 
     /**
-     * The name of the task
+     * Nom de la tâche
      */
-    // Suppress warning because setName is called in constructor
-    @SuppressWarnings("NullableProblems")
     @NonNull
     private String name;
 
     /**
-     * The timestamp when the task has been created
+     * date de la création de la tâche
      */
     private long creationTimestamp;
 
@@ -59,6 +56,8 @@ public class Task {
      * Returns the unique identifier of the task.
      *
      * @return the unique identifier of the task
+     *
+     * GETTER et SETTER
      */
     public long getId() {
         return id;
