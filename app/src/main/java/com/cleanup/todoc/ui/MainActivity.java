@@ -35,6 +35,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements TasksAdapter.DeleteTaskListener {
     /**
      * List of all projects available in the application
+     * Liste des projets disponible dans l'app
      */
     private final Project[] allProjects = Project.getAllProjects();
 
