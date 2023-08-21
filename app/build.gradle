@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
     defaultConfig {
         applicationId "com.example.p5_daa_alexandre"
         minSdkVersion 21
@@ -42,5 +41,9 @@ dependencies {
     //VIEW MODEL & LIVE DATA
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // TESTING
+
+    androidTestImplementation 'androidx.arch.core:core-testing:2.2.0'
 
 }
