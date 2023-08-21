@@ -119,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         // 6 - Read from storage when starting
 
-        readFromStorage();
+        //readFromStorage();
+        initView();
     }
 
     // -------------------
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
             }
 
-            readFromStorage();
+            //readFromStorage();
 
         };
 
@@ -165,10 +166,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             sortMethod = SortMethod.OLD_FIRST;
         } else if (id == R.id.filter_recent_first) {
             sortMethod = SortMethod.RECENT_FIRST;
-        } else if (id == R.id.action_share) {
-            return true;
-        } else if (id == R.id.action_save) {
-            return true;
         }
 
         updateTasks();
