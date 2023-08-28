@@ -8,35 +8,26 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
+import com.cleanup.todoc.injections.ViewModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
 import java.util.List;
 
-/**
- * <p>Adapter which handles the list of tasks to display in the dedicated RecyclerView.</p>
- *
- * @author Gaëtan HERFRAY
- */
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHolder> {
-    /**
-     * The list of tasks the adapter deals with
-     */
+
     @NonNull
     private List<Task> tasks;
 
-    /**
-     * The listener for when a task needs to be deleted
-     */
     @NonNull
     private final DeleteTaskListener deleteTaskListener;
 
     /**
      * Instantiates a new TasksAdapter.
-     *
      * @param tasks the list of tasks the adapter deals with to set
      */
     TasksAdapter(@NonNull final List<Task> tasks, @NonNull final DeleteTaskListener deleteTaskListener) {
@@ -46,7 +37,6 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
     /**
      * Updates the list of tasks the adapter deals with.
-     *
      * @param tasks the list of tasks the adapter deals with to set
      */
     void updateTasks(@NonNull final List<Task> tasks) {
@@ -85,12 +75,11 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
     /**
      * <p>ViewHolder for task items in the tasks list</p>
-     *
-     * @author Gaëtan HERFRAY
      */
     class TaskViewHolder extends RecyclerView.ViewHolder {
         /**
-         * The circle icon showing the color of the project
+         * rond de couleur qui indique à
+         * quel projet appartient la tâche
          */
         private final AppCompatImageView imgProject;
 
@@ -143,6 +132,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
         /**
          * Binds a task to the item view.
+         * Lier la tâche à l'itemView
          *
          * @param task the task to bind in the item view
          */

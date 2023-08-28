@@ -16,10 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
+import com.cleanup.todoc.databinding.ActivityMainBinding;
+import com.cleanup.todoc.injections.ViewModelFactory;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
@@ -28,56 +32,37 @@ import java.util.Collections;
 import java.util.Date;
 
 /**
- * <p>Home activity of the application which is displayed when the user opens the app.</p>
- * <p>Displays the list of tasks.</p>
- *
- * @author Gaëtan HERFRAY
+ * @author Alexandre Clémençot
  */
 public class MainActivity extends AppCompatActivity implements TasksAdapter.DeleteTaskListener {
-    /**
-     * List of all projects available in the application
-     * Liste des projets disponible dans l'app
-     */
+
+    // 1 - FOR DATA
+
+    private TaskViewModel taskViewModel;
+
+    private static final int TASK_ID = 1;
+
     private final Project[] allProjects = Project.getAllProjects();
 
-    /**
-     * List of all current tasks of the application
-     */
     @NonNull
     private final ArrayList<Task> tasks = new ArrayList<>();
 
-    /**
-     * The adapter which handles the list of tasks
-     */
     private final TasksAdapter adapter = new TasksAdapter(tasks, this);
 
-    /**
-     * The sort method to be used to display tasks
-     */
     @NonNull
     private SortMethod sortMethod = SortMethod.NONE;
 
-    /**
-     * Dialog to create a new task
-     */
     @Nullable
     public AlertDialog dialog = null;
 
-    /**
-     * EditText that allows user to set the name of a task
-     */
     @Nullable
     private EditText dialogEditText = null;
 
-    /**
-     * Spinner that allows the user to associate a project to a task
-     */
     @Nullable
     private Spinner dialogSpinner = null;
 
-    /**
-     * The RecyclerView which displays the list of tasks
-     */
+    private ActivityMainBinding binding;
+
     // Suppress warning is safe because variable is initialized in onCreate
     @SuppressWarnings("NullableProblems")
     @NonNull
@@ -117,31 +102,23 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             }
         });
 
-        // 6 - Read from storage when starting
+        // 8 - Configure view (with recyclerview) & ViewModel
 
-        //readFromStorage();
-        initView();
+        configureViewModel();
+
+        // 9 - Get current items from Database
+
+        /**
+         * getTasks();
+         */
+
     }
 
     // -------------------
 
-        // UI
+    // UI
 
-        // -------------------
-
-    private void initView() {
-
-        CompoundButton.OnCheckedChangeListener checkedChangeListener = (button, isChecked) -> {
-
-            if (isChecked) {
-
-            }
-
-            //readFromStorage();
-
-        };
-
-    }
+    // ------------------
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -361,6 +338,47 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         NONE
     }
 
+    // -------------------
+
+    // DATA
+
+    // -------------------
+
+    // 2 - Configuring ViewModel
+
+    private void configureViewModel() {
+
+        this.taskViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(this)).get(TaskViewModel.class);
+
+        long projectId = 0;
+        this.taskViewModel.init(projectId);
+
+    }
+
+    // 3 - Get all items for a user
+
+    /**private void getTasks() {
+
+        this.taskViewModel.getTasks().observe(this, this::getTasks);
+    }*/
+
+    // 3 - Delete an item
+
+    private void deleteTask(Task task) {
+
+        this.taskViewModel.deleteItem(task.getId());
+
+    }
+
+    // 3 - Update an item (selected or not)
+
+    /**private void updateTask(Task task) {
+
+        task.setId(!task.getId());
+
+        this.taskViewModel.updateTask(task);
+
+    }*/
 
 
 }

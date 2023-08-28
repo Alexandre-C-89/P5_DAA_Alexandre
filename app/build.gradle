@@ -23,6 +23,9 @@ android {
     lint {
         disable 'RestrictedApi'
     }
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
 
         targetCompatibility 1.8
