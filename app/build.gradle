@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.example.p5_daa_alexandre'
+    compileSdk 33
+
     defaultConfig {
         applicationId "com.example.p5_daa_alexandre"
         minSdkVersion 21

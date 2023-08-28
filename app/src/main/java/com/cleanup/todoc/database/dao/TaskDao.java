@@ -18,9 +18,6 @@ public interface TaskDao {
 
     void createTask(Task task);
 
-    @Insert
-    long insertTask(Task task);
-
     @Update
     int updateTask(Task task);
 
