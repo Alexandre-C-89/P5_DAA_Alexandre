@@ -13,9 +13,10 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM Task WHERE id = :taskId")
-    LiveData<List<Task>> getTask(long taskId);
+    @Query("SELECT * FROM Task")
+    LiveData<List<Task>> getTasks();
 
+    @Insert
     void createTask(Task task);
 
     @Update
