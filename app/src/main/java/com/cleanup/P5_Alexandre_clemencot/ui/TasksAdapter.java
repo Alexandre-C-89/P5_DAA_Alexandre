@@ -1,4 +1,4 @@
-package com.cleanup.todoc.ui;
+package com.cleanup.P5_DAA_Alexandre.ui;
 
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
@@ -8,13 +8,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cleanup.P5_Alexandre_clemencot.model.Project;
+import com.cleanup.P5_Alexandre_clemencot.model.Task;
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.injections.ViewModelFactory;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
 
 import java.util.List;
 

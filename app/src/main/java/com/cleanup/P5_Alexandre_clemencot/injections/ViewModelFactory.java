@@ -1,17 +1,13 @@
-package com.cleanup.todoc.injections;
+package com.cleanup.P5_Alexandre_clemencot.injections;
 
 import android.content.Context;
-
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.cleanup.todoc.database.TodocDatabase;
-import com.cleanup.todoc.repository.ProjectDataRepository;
-import com.cleanup.todoc.repository.TaskDataRepository;
-import com.cleanup.todoc.ui.TaskViewModel;
-
+import com.cleanup.P5_Alexandre_clemencot.database.TodocDatabase;
+import com.cleanup.P5_Alexandre_clemencot.repository.ProjectDataRepository;
+import com.cleanup.P5_Alexandre_clemencot.repository.TaskDataRepository;
+import com.cleanup.P5_Alexandre_clemencot.ui.TaskViewModel;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -45,7 +41,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
     }
 
-    private ViewModelFactory(Context context) {
+    public ViewModelFactory(Context context) {
 
         TodocDatabase database = TodocDatabase.getInstance(context);
 

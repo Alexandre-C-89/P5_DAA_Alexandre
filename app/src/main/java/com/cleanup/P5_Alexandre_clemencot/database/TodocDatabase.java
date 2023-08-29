@@ -1,4 +1,4 @@
-package com.cleanup.todoc.database;
+package com.cleanup.P5_Alexandre_clemencot.database;
 
 import static androidx.room.Room.databaseBuilder;
 
@@ -11,10 +11,10 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.cleanup.todoc.database.dao.ProjectDao;
-import com.cleanup.todoc.database.dao.TaskDao;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.P5_Alexandre_clemencot.database.dao.ProjectDao;
+import com.cleanup.P5_Alexandre_clemencot.database.dao.TaskDao;
+import com.cleanup.P5_Alexandre_clemencot.model.Project;
+import com.cleanup.P5_Alexandre_clemencot.model.Task;
 
 import java.util.concurrent.Executors;
 

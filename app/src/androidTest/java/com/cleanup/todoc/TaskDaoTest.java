@@ -3,22 +3,18 @@ package com.cleanup.todoc;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.room.Room;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
-
-import com.cleanup.todoc.database.TodocDatabase;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
-
+import com.cleanup.P5_Alexandre_clemencot.database.TodocDatabase;
+import com.cleanup.P5_Alexandre_clemencot.model.Project;
+import com.cleanup.P5_Alexandre_clemencot.model.Task;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)

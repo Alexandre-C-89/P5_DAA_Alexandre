@@ -1,8 +1,9 @@
-package com.cleanup.todoc.repository;
+package com.cleanup.P5_Alexandre_clemencot.repository;
 
 import androidx.lifecycle.LiveData;
-import com.cleanup.todoc.database.dao.ProjectDao;
-import com.cleanup.todoc.model.Project;
+
+import com.cleanup.P5_Alexandre_clemencot.database.dao.ProjectDao;
+import com.cleanup.P5_Alexandre_clemencot.model.Project;
 
 import java.util.List;
 
