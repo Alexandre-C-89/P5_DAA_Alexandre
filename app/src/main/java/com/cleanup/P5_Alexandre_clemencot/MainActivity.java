@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 import com.cleanup.P5_Alexandre_clemencot.home.HomeFragment;
+import com.cleanup.P5_Alexandre_clemencot.injections.ViewModelFactory;
 import com.cleanup.todoc.R;
 import com.cleanup.todoc.databinding.ActivityMainBinding;
 import java.time.LocalDate;

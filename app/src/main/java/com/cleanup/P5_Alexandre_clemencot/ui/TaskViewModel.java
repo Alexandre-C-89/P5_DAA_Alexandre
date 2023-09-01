@@ -5,8 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.cleanup.P5_Alexandre_clemencot.model.Project;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
-import com.cleanup.P5_Alexandre_clemencot.repository.ProjectDataRepository;
-import com.cleanup.P5_Alexandre_clemencot.repository.TaskDataRepository;
+import com.cleanup.P5_Alexandre_clemencot.repository.dataRepository;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -14,10 +13,7 @@ import java.util.concurrent.Executor;
 public class TaskViewModel extends ViewModel {
 
     // REPOSITORIES
-
-    private final TaskDataRepository taskDataSource;
-
-    private final ProjectDataRepository projectDataSource;
+    private final dataRepository dataSource;
 
     private final Executor executor;
 
@@ -27,11 +23,9 @@ public class TaskViewModel extends ViewModel {
 
     private LiveData<List<Project>> currentProject;
 
-    public TaskViewModel(TaskDataRepository taskDataSource, ProjectDataRepository projectDataSource, Executor executor) {
+    public TaskViewModel( dataRepository dataSource, Executor executor) {
 
-        this.taskDataSource = taskDataSource;
-
-        this.projectDataSource = projectDataSource;
+        this.dataSource = dataSource;
 
         this.executor = executor;
 
@@ -45,7 +39,7 @@ public class TaskViewModel extends ViewModel {
 
         }
 
-        currentProject = projectDataSource.getProjects(projectId);
+        currentProject = dataSource.getProjects(projectId);
 
     }
 
@@ -57,7 +51,7 @@ public class TaskViewModel extends ViewModel {
 
     public LiveData<List<Task>> getTasks() {
 
-        return taskDataSource.getTasks();
+        return dataSource.getTasks();
 
     }
 
@@ -65,7 +59,7 @@ public class TaskViewModel extends ViewModel {
 
         executor.execute(() -> {
 
-            taskDataSource.createTask(new Task(id, projectId, taskName, timestamp));
+            dataSource.createTask(new Task(id, projectId, taskName, timestamp));
 
         });
 
@@ -73,13 +67,13 @@ public class TaskViewModel extends ViewModel {
 
     public void deleteItem(long taskId) {
 
-        executor.execute(() -> taskDataSource.deleteTask(taskId));
+        executor.execute(() -> dataSource.deleteTask(taskId));
 
     }
 
     public void updateTask(Task task) {
 
-        executor.execute(() -> taskDataSource.updateTask(task));
+        executor.execute(() -> dataSource.updateTask(task));
     }
 
 }

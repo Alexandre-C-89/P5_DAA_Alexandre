@@ -4,8 +4,8 @@ import android.content.Context;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.cleanup.P5_Alexandre_clemencot.database.TodocDatabase;
-import com.cleanup.P5_Alexandre_clemencot.repository.ProjectDataRepository;
-import com.cleanup.P5_Alexandre_clemencot.repository.TaskDataRepository;
+import com.cleanup.P5_Alexandre_clemencot.home.HomeViewModel;
+import com.cleanup.P5_Alexandre_clemencot.repository.dataRepository;
 import com.cleanup.P5_Alexandre_clemencot.ui.TaskViewModel;
 import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.Executor;
@@ -13,55 +13,29 @@ import java.util.concurrent.Executors;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
-    private final TaskDataRepository taskDataSource;
-
-    private final ProjectDataRepository projectDataSource;
+    private final dataRepository dataSource;
 
     private final Executor executor;
 
-    private static ViewModelFactory factory;
-
-    public static ViewModelFactory getInstance(Context context) {
-
-        if (factory == null) {
-
-            synchronized (ViewModelFactory.class) {
-
-                if (factory == null) {
-
-                    factory = new ViewModelFactory(context);
-
-                }
-
-            }
-
-        }
-
-        return factory;
-
-    }
 
     public ViewModelFactory(Context context) {
 
         TodocDatabase database = TodocDatabase.getInstance(context);
 
-        this.taskDataSource = new TaskDataRepository(database.taskDao());
-
-        this.projectDataSource = new ProjectDataRepository(database.projectDao());
+        this.dataSource = new dataRepository(database.taskDao(), database.projectDao());
 
         this.executor = Executors.newSingleThreadExecutor();
 
     }
 
     @Override
-
-    @NotNull
-
     public <T extends ViewModel>  T create(Class<T> modelClass) {
-
+        if (modelClass.isAssignableFrom(HomeViewModel.class)) {
+            return (T) new HomeViewModel(dataSource);
+        }
         if (modelClass.isAssignableFrom(TaskViewModel.class)) {
 
-            return (T) new TaskViewModel(taskDataSource, projectDataSource, executor);
+            return (T) new TaskViewModel(dataSource, executor);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class");

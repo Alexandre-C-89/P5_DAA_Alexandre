@@ -32,6 +32,8 @@ android {
 
         sourceCompatibility 1.8
 
+        coreLibraryDesugaringEnabled true
+
     }
 }
 
@@ -60,5 +62,7 @@ dependencies {
     androidTestImplementation 'androidx.arch.core:core-testing:2.2.0'
 
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 
 }

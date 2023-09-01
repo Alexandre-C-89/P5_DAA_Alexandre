@@ -4,17 +4,17 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.cleanup.P5_Alexandre_clemencot.di.Di;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
-import com.cleanup.P5_Alexandre_clemencot.repository.TaskDataRepository;
+import com.cleanup.P5_Alexandre_clemencot.repository.dataRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
-    private final TaskDataRepository taskdataRepository;
+    private final dataRepository taskdataRepository;
 
     public MainViewModel() {
-        taskdataRepository = Di.getTaskDataRepository();
+        taskdataRepository = Di.getDataRepository();
     }
 
     /**
