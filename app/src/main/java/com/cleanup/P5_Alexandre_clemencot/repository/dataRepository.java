@@ -20,7 +20,7 @@ public class dataRepository {
         this.taskDao = taskDao;
         this.projectDao = projectDao;
     }
-    @NotNull
+
     public LiveData<List<Task>> getTasks() { return this.taskDao.getTasks(); }
 
     public LiveData<List<Project>> getProjects(long projectId) { return this.projectDao.getProjects(projectId); }
