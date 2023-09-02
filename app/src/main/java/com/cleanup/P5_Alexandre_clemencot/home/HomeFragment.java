@@ -95,4 +95,14 @@ public class HomeFragment extends Fragment {
         homeViewModel.deleteMeeting(position);
     }
 
+    // 2 - Configuring ViewModel
+
+    private void configureViewModel() {
+
+        this.homeViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance(getContext())).get(HomeViewModel.class);
+
+        this.homeViewModel.init();
+
+    }
+
 }

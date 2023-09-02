@@ -2,34 +2,20 @@ package com.cleanup.P5_Alexandre_clemencot;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import com.cleanup.P5_Alexandre_clemencot.di.Di;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
-import com.cleanup.P5_Alexandre_clemencot.repository.dataRepository;
-
+import com.cleanup.P5_Alexandre_clemencot.repository.DataRepository;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class MainViewModel extends ViewModel {
 
-    private final dataRepository taskdataRepository;
+    private final DataRepository dataRepository;
+    private final Executor executor;
 
-    public MainViewModel() {
-        taskdataRepository = Di.getDataRepository();
-    }
-
-    /**
-     * Liste de meeting
-     */
-    public LiveData<List<Task>> getTasks() {
-        return taskdataRepository.getTasks();
-    }
-
-    /**
-     * Création de meeting
-     */
-    public void addTask(Task task) {
-
-        taskdataRepository.createTask(task);
+    public MainViewModel(DataRepository dataSource, Executor executor) {
+        this.dataRepository = dataSource;
+        this.executor = executor;
     }
 
     public void filterTasksByProjectName(String roomName) {

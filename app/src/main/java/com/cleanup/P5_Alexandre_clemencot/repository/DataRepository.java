@@ -7,16 +7,14 @@ import com.cleanup.P5_Alexandre_clemencot.database.dao.TaskDao;
 import com.cleanup.P5_Alexandre_clemencot.model.Project;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
-public class dataRepository {
+public class DataRepository {
     private final TaskDao taskDao;
 
     private final ProjectDao projectDao;
 
-    public dataRepository(TaskDao taskDao, ProjectDao projectDao) {
+    public DataRepository(TaskDao taskDao, ProjectDao projectDao) {
         this.taskDao = taskDao;
         this.projectDao = projectDao;
     }

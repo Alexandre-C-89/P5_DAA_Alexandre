@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.cleanup.P5_Alexandre_clemencot.model.Project;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
-import com.cleanup.P5_Alexandre_clemencot.repository.dataRepository;
+import com.cleanup.P5_Alexandre_clemencot.repository.DataRepository;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
 public class TaskViewModel extends ViewModel {
 
     // REPOSITORIES
-    private final dataRepository dataSource;
+    private final DataRepository dataSource;
 
     private final Executor executor;
 
@@ -23,7 +23,7 @@ public class TaskViewModel extends ViewModel {
 
     private LiveData<List<Project>> currentProject;
 
-    public TaskViewModel( dataRepository dataSource, Executor executor) {
+    public TaskViewModel(DataRepository dataSource, Executor executor) {
 
         this.dataSource = dataSource;
 
