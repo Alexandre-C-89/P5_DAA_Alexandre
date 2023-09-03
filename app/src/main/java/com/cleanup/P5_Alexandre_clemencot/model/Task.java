@@ -3,6 +3,7 @@ package com.cleanup.P5_Alexandre_clemencot.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -12,8 +13,17 @@ import java.util.Comparator;
 /**
  * Task correspond à Item dans le cours OC
  */
-@Entity(foreignKeys = @ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "projectId"))
+@Entity(foreignKeys = {@ForeignKey(entity = Project.class,
+        parentColumns = "id",
+        childColumns = "projectId",
+        onDelete = ForeignKey.CASCADE,
+        onUpdate = ForeignKey.CASCADE)
+})
 public class Task {
+
+    //@Embedded(prefix = "task_")
+
+
     /**
      * The unique identifier of the task
      */
