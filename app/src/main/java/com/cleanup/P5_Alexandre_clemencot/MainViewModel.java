@@ -19,11 +19,18 @@ public class MainViewModel extends ViewModel {
     }
 
     public void filterTasksByProjectName(String roomName) {
+        dataRepository.getFilteredMeetingsByRoom(roomName);
     }
 
     public void filterTasksByDate(LocalDate date) {
+        dataRepository.filterMeetingsByDate(date);
     }
 
     public void updateListBasedOnSearchText(String newRoomName) {
+        dataRepository.getFilteredMeetingsByRoom(newRoomName);
+    }
+
+    public void resetFilter() {
+        dataRepository.resetFilter();
     }
 }

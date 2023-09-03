@@ -5,14 +5,15 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "Projects", indices = {@Index(value = "id", unique = true)})
 public class Project {
     /**
      * The unique identifier of the project
      */
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     /**

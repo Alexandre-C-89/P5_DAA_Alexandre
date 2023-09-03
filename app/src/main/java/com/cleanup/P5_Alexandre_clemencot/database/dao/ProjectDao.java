@@ -11,16 +11,10 @@ import java.util.List;
 @Dao
 public interface ProjectDao {
 
-    @Query("SELECT * FROM project WHERE id = :projectId")
+    @Query("SELECT * FROM Projects WHERE id = :projectId")
     LiveData<List<Project>> getProjects(long projectId);
 
     @Insert
     long insertProject(Project project);
-
-    @Update
-    int updateProject(Project project);
-
-    @Query("DELETE FROM Project WHERE id = :projectId")
-    int deleteProject(long projectId);
 
 }

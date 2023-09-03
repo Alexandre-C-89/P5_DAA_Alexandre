@@ -3,26 +3,24 @@ package com.cleanup.P5_Alexandre_clemencot.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 
 /**
  * Task correspond à Item dans le cours OC
  */
-@Entity(foreignKeys = {@ForeignKey(entity = Project.class,
+@Entity(tableName = "Tasks",
+        foreignKeys = {@ForeignKey(entity = Project.class,
         parentColumns = "id",
         childColumns = "projectId",
         onDelete = ForeignKey.CASCADE,
         onUpdate = ForeignKey.CASCADE)
 })
 public class Task {
-
-    //@Embedded(prefix = "task_")
-
 
     /**
      * The unique identifier of the task
@@ -45,7 +43,7 @@ public class Task {
     /**
      * date de la création de la tâche
      */
-    private long creationTimestamp;
+    private LocalDate date;
 
     /**
      * Instantiates a new Task.
@@ -53,13 +51,13 @@ public class Task {
      * @param id                the unique identifier of the task to set
      * @param projectId         the unique identifier of the project associated to the task to set
      * @param name              the name of the task to set
-     * @param creationTimestamp the timestamp when the task has been created to set
+     * @param localeDate the timestamp when the task has been created to set
      */
-    public Task(long id, long projectId, @NonNull String name, long creationTimestamp) {
+    public Task(long id, long projectId, @NonNull String name, LocalDate localeDate) {
         this.setId(id);
         this.setProjectId(projectId);
         this.setName(name);
-        this.setCreationTimestamp(creationTimestamp);
+        this.setDate(localeDate);
     }
 
     /**
@@ -111,8 +109,8 @@ public class Task {
         return name;
     }
 
-    public long getCreationTimestamp() {
-        return creationTimestamp;
+    public LocalDate getDate() {
+        return date;
     }
 
     public long getProjectId() {
@@ -131,49 +129,10 @@ public class Task {
     /**
      * Sets the timestamp when the task has been created.
      *
-     * @param creationTimestamp the timestamp when the task has been created to set
+     * @param date the timestamp when the task has been created to set
      */
-    public void setCreationTimestamp(long creationTimestamp) {
-        this.creationTimestamp = creationTimestamp;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    /**
-     * Comparator to sort task from A to Z
-     */
-    public static class TaskAZComparator implements Comparator<Task> {
-        @Override
-        public int compare(Task left, Task right) {
-            return left.name.compareTo(right.name);
-        }
-    }
-
-    /**
-     * Comparator to sort task from Z to A
-     */
-    public static class TaskZAComparator implements Comparator<Task> {
-        @Override
-        public int compare(Task left, Task right) {
-            return right.name.compareTo(left.name);
-        }
-    }
-
-    /**
-     * Comparator to sort task from last created to first created
-     */
-    public static class TaskRecentComparator implements Comparator<Task> {
-        @Override
-        public int compare(Task left, Task right) {
-            return (int) (right.creationTimestamp - left.creationTimestamp);
-        }
-    }
-
-    /**
-     * Comparator to sort task from first created to last created
-     */
-    public static class TaskOldComparator implements Comparator<Task> {
-        @Override
-        public int compare(Task left, Task right) {
-            return (int) (left.creationTimestamp - right.creationTimestamp);
-        }
-    }
 }

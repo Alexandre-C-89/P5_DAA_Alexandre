@@ -12,16 +12,13 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM Task")
+    @Query("SELECT * FROM Tasks")
     LiveData<List<Task>> getTasks();
 
     @Insert
     void createTask(Task task);
 
-    @Update
-    int updateTask(Task task);
-
-    @Query("DELETE FROM Task WHERE id = :taskId")
+    @Query("DELETE FROM Tasks WHERE id = :taskId")
     int deleteTask(long taskId);
 
 }
