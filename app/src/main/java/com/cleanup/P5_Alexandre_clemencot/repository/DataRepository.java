@@ -30,7 +30,7 @@ public class DataRepository {
 
     public LiveData<List<Task>> getTasks() { return this.taskDao.getTasks(); }
 
-    public LiveData<List<Project>> getProjects(long projectId) { return this.projectDao.getProjects(projectId); }
+    public LiveData<List<Project>> getProjects(long projectId) { return this.projectDao.getProjects(); }
 
     public void createTask(Task task){ taskDao.createTask(task); }
 
@@ -42,21 +42,10 @@ public class DataRepository {
      * Méthode trier par jour
      */
 
-
     /**
-     * Méthode filter par nom
+     * Méthode Trier par nom
      */
-    public void getFilteredMeetingsByRoom(final String newTaskName) {
-        List<Task> filteredTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            String taskName = task.getName();
-            if (taskName.contains(newTaskName)) {
-                filteredTasks.add(task);
-                // SearchView affiche dans ma toolbar un edit Text
-            }
-        }
-        tasksLiveData.setValue(filteredTasks);
-    }
+
 
     /**
      * Méthode filter par nom

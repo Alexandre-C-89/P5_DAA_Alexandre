@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.cleanup.P5_Alexandre_clemencot.injections.ViewModelFactory;
 import com.cleanup.P5_Alexandre_clemencot.model.Project;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
@@ -305,6 +306,5 @@ public class HomeFragment extends Fragment {
          */
         NONE
     }
-
 
 }
