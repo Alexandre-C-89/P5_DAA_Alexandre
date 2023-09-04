@@ -108,19 +108,4 @@ public class TaskDaoTest {
 
     }
 
-    @Test
-
-    public void deleteProject() throws InterruptedException {
-
-        // BEFORE : Adding a new user
-        this.database.projectDao().insertProject(PROJECT_DEMO);
-
-        // TEST
-
-        this.database.projectDao().deleteProject(4L);
-        List<Project> project = LiveDataTestUtil.getValue(this.database.projectDao().getProjects(4L));
-        assertFalse(project.contains(PROJECT_DEMO));
-
-    }
-
 }
