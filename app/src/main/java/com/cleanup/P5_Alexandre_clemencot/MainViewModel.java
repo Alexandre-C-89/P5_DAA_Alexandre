@@ -17,15 +17,4 @@ public class MainViewModel extends ViewModel {
         this.dataRepository = dataSource;
         this.executor = executor;
     }
-
-    public void filterTasksByProjectName(String roomName) {
-        dataRepository.getFilteredMeetingsByRoom(roomName);
-    }
-    public void updateListBasedOnSearchText(String newRoomName) {
-        dataRepository.getFilteredMeetingsByRoom(newRoomName);
-    }
-
-    public void resetFilter() {
-        dataRepository.resetFilter();
-    }
 }

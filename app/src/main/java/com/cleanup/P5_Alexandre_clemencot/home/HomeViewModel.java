@@ -32,16 +32,4 @@ public class HomeViewModel extends ViewModel {
     public void deleteMeeting(int position) {
         dataRepository.deleteTask(position);
     }
-
-    public void init() {
-
-        if (this.getTasks() != null) {
-
-            return;
-
-        }
-
-        LiveData<List<Task>> currentTasks = dataRepository.getTasks();
-
-    }
 }
