@@ -39,18 +39,9 @@ public class DataRepository {
     public void deleteTask(long taskId){ taskDao.deleteTask(taskId); }
 
     /**
-     * Méthode filter par jour
+     * Méthode trier par jour
      */
-    public void filterMeetingsByDate(LocalDate selectedDate) {
-        List<Task> filteredMeetings = new ArrayList<>();
-        for (Task task : tasks) {
-            LocalDate taskDate = task.getDate();
-            if (taskDate.isEqual(selectedDate)) {
-                filteredMeetings.add(task);
-            }
-        }
-        tasksLiveData.setValue(filteredMeetings);
-    }
+
 
     /**
      * Méthode filter par nom

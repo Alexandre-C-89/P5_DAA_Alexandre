@@ -43,7 +43,7 @@ public class Task {
     /**
      * date de la création de la tâche
      */
-    private LocalDate date;
+    private long date;
 
     /**
      * Instantiates a new Task.
@@ -51,13 +51,13 @@ public class Task {
      * @param id                the unique identifier of the task to set
      * @param projectId         the unique identifier of the project associated to the task to set
      * @param name              the name of the task to set
-     * @param localeDate the timestamp when the task has been created to set
+     * @param date the timestamp when the task has been created to set
      */
-    public Task(long id, long projectId, @NonNull String name, LocalDate localeDate) {
+    public Task(long id, long projectId, @NonNull String name, long date) {
         this.setId(id);
         this.setProjectId(projectId);
         this.setName(name);
-        this.setDate(localeDate);
+        this.setDate(date);
     }
 
     /**
@@ -109,7 +109,7 @@ public class Task {
         return name;
     }
 
-    public LocalDate getDate() {
+    public long getDate() {
         return date;
     }
 
@@ -131,8 +131,48 @@ public class Task {
      *
      * @param date the timestamp when the task has been created to set
      */
-    public void setDate(LocalDate date) {
+    public void setDate(long date) {
         this.date = date;
+    }
+
+    /**
+     * Comparator to sort task from A to Z
+     */
+    public static class TaskAZComparator implements Comparator<Task> {
+        @Override
+        public int compare(Task left, Task right) {
+            return left.name.compareTo(right.name);
+        }
+    }
+
+    /**
+     * Comparator to sort task from Z to A
+     */
+    public static class TaskZAComparator implements Comparator<Task> {
+        @Override
+        public int compare(Task left, Task right) {
+            return right.name.compareTo(left.name);
+        }
+    }
+
+    /**
+     * Comparator to sort task from last created to first created
+     */
+    public static class TaskRecentComparator implements Comparator<Task> {
+        @Override
+        public int compare(Task left, Task right) {
+            return (int) (right.date - left.date);
+        }
+    }
+
+    /**
+     * Comparator to sort task from first created to last created
+     */
+    public static class TaskOldComparator implements Comparator<Task> {
+        @Override
+        public int compare(Task left, Task right) {
+            return (int) (left.date - right.date);
+        }
     }
 
 }

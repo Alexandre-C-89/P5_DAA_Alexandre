@@ -34,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        /**
-         * Toolbar
-         */
-        setSupportActionBar(binding.toolbar);
         HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_fragment, homeFragment)
@@ -53,26 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actions, menu);
 
-        MenuItem menuItem = menu.findItem(R.id.action_filter);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Type here to search");
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String taskName) {
-                // Action lorsque l'utilisateur soumet la recherche
-                mainViewModel.filterTasksByProjectName(taskName);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newRoomName) {
-                // Action lorsque le texte de recherche change
-                // Par exemple, vous pouvez mettre à jour la liste en fonction du texte de recherche en temps réel
-                mainViewModel.updateListBasedOnSearchText(newRoomName);
-                return true;
-            }
-        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -122,32 +99,6 @@ public class MainActivity extends AppCompatActivity {
          * No sort
          */
         NONE
-    }
-
-    private void handleFilterToday() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                // La date a été sélectionnée, vous pouvez effectuer les actions nécessaires ici
-                // Par exemple, vous pouvez mettre à jour votre liste de réunions avec la date sélectionnée
-                LocalDate selectedDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth);
-                filterMeetingsByDate(selectedDate);
-            }
-        };
-
-        // Récupérez la date actuelle pour initialiser le DatePickerDialog
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        // Créez et affichez le DatePickerDialog
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day);
-        datePickerDialog.show();
-    }
-
-    private void filterMeetingsByDate(LocalDate selectedDate) {
-        mainViewModel.filterTasksByDate(selectedDate);
     }
 
 }

@@ -55,11 +55,11 @@ public class TaskViewModel extends ViewModel {
 
     }
 
-    public void createTask(long id, long projectId, String taskName,long timestamp) {
+    public void createTask(long id, long projectId, String taskName,long date) {
 
         executor.execute(() -> {
 
-            dataSource.createTask(new Task(id, projectId, taskName, timestamp));
+            dataSource.createTask(new Task(id, projectId, taskName, date));
 
         });
 
@@ -69,11 +69,6 @@ public class TaskViewModel extends ViewModel {
 
         executor.execute(() -> dataSource.deleteTask(taskId));
 
-    }
-
-    public void updateTask(Task task) {
-
-        executor.execute(() -> dataSource.updateTask(task));
     }
 
 }

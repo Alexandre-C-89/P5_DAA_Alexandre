@@ -70,7 +70,9 @@ public abstract class TodocDatabase extends RoomDatabase {
 
                 super.onCreate(db);
 
-                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.taskDao().createTask(new Task(1, 1, "Nettoyage",10L )));
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.projectDao().insertProject(new Project(1L, "Projet Tartampion", 0xFFEADAD1)));
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.projectDao().insertProject(new Project(2L, "Projet Lucidia", 0xFFB4CDBA)));
+                Executors.newSingleThreadExecutor().execute(() -> INSTANCE.projectDao().insertProject(new Project(3L, "Projet Circus", 0xFFA3CED2)));
 
             }
 
