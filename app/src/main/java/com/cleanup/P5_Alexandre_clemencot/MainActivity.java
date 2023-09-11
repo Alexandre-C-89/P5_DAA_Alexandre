@@ -32,10 +32,4 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actions, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
 }
