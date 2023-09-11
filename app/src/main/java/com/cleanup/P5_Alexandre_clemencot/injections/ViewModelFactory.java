@@ -3,10 +3,9 @@ package com.cleanup.P5_Alexandre_clemencot.injections;
 import android.content.Context;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.cleanup.P5_Alexandre_clemencot.MainViewModel;
 import com.cleanup.P5_Alexandre_clemencot.database.TodocDatabase;
-import com.cleanup.P5_Alexandre_clemencot.home.HomeViewModel;
+import com.cleanup.P5_Alexandre_clemencot.ui.home.HomeViewModel;
 import com.cleanup.P5_Alexandre_clemencot.repository.DataRepository;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

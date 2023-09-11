@@ -1,12 +1,9 @@
-package com.cleanup.P5_Alexandre_clemencot.home;
+package com.cleanup.P5_Alexandre_clemencot.ui.home;
 
 import android.content.res.ColorStateList;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -66,7 +63,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             });
         }
         public void bind(Task task) {
-            lblTaskName.setText(task.getName());
+            lblTaskName.setText(task.getTaskDescription());
             imgDelete.setTag(task);
 
             final Project taskProject = task.getProject();

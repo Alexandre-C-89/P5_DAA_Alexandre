@@ -1,4 +1,4 @@
-package com.cleanup.P5_Alexandre_clemencot.home;
+package com.cleanup.P5_Alexandre_clemencot.ui.home;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -18,7 +17,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.cleanup.P5_Alexandre_clemencot.injections.ViewModelFactory;
 import com.cleanup.P5_Alexandre_clemencot.model.Project;
 import com.cleanup.P5_Alexandre_clemencot.model.Task;
@@ -42,15 +40,6 @@ public class HomeFragment extends Fragment {
     private EditText dialogEditText = null;
     @Nullable
     private Spinner dialogSpinner = null;
-    // Suppress warning is safe because variable is initialized in onCreate
-    @SuppressWarnings("NullableProblems")
-    @NonNull
-    private TextView lblNoTasks;
-
-    // Suppress warning is safe because variable is initialized in onCreate
-    @SuppressWarnings("NullableProblems")
-    @NonNull
-    private RecyclerView listTasks;
 
     /**
      * The sort method to be used to display tasks
@@ -117,12 +106,12 @@ public class HomeFragment extends Fragment {
     private void updateList(List<Task> listTasks){
         tasks.clear();
         tasks.addAll(listTasks);
-        adapter.notifyDataSetChanged();
+        updateTasks();
     }
 
     private void deleteMeeting(int position) {
         // Supprimer la réunion du ViewModel
-        homeViewModel.deleteMeeting(position);
+        homeViewModel.deleteMeeting(tasks.get(position).getId());
     }
 
     /**
@@ -141,7 +130,6 @@ public class HomeFragment extends Fragment {
 
     /**
      * Returns the dialog allowing the user to create a new task.
-     *
      * @return the dialog allowing the user to create a new task
      */
     @NonNull
@@ -219,7 +207,7 @@ public class HomeFragment extends Fragment {
                 // TODO: Replace this by id of persisted task
                 long id = (long) (Math.random() * 50000);
 
-
+                // J'initialise les paramètres pour la création de la tâche
                 Task task = new Task(
                         id,
                         taskProject.getId(),
@@ -248,8 +236,7 @@ public class HomeFragment extends Fragment {
      * @param task the task to be added to the list
      */
     private void addTask(@NonNull Task task) {
-        tasks.add(task);
-        updateTasks();
+        homeViewModel.addTask(task);
     }
 
     /**
@@ -257,11 +244,11 @@ public class HomeFragment extends Fragment {
      */
     private void updateTasks() {
         if (tasks.size() == 0) {
-            lblNoTasks.setVisibility(View.VISIBLE);
-            listTasks.setVisibility(View.GONE);
+            binding.lblNoTask.setVisibility(View.VISIBLE);
+            binding.listTasks.setVisibility(View.GONE);
         } else {
-            lblNoTasks.setVisibility(View.GONE);
-            listTasks.setVisibility(View.VISIBLE);
+            binding.lblNoTask.setVisibility(View.GONE);
+            binding.listTasks.setVisibility(View.VISIBLE);
             switch (sortMethod) {
                 case ALPHABETICAL:
                     Collections.sort(tasks, new Task.TaskAZComparator());

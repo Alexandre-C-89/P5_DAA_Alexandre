@@ -1,4 +1,4 @@
-package com.cleanup.P5_Alexandre_clemencot.home;
+package com.cleanup.P5_Alexandre_clemencot.ui.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -26,10 +26,10 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void addTask(Task newTask) {
-        dataRepository.createTask(newTask);
+        executor.execute(() -> dataRepository.createTask(newTask));
     }
 
-    public void deleteMeeting(int position) {
-        dataRepository.deleteTask(position);
+    public void deleteMeeting(long position) {
+        executor.execute(() -> dataRepository.deleteTask(position));
     }
 }

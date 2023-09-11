@@ -14,15 +14,4 @@
         android:padding="16dp"
         tools:layout="@layout/fragment_home" />
 
-    <TextView
-        android:id="@+id/lbl_no_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:drawableTop="@drawable/ic_work_off"
-        android:gravity="center_horizontal"
-        android:text="@string/no_task"
-        android:textSize="22sp"
-        tools:visibility="gone" />
-
 </RelativeLayout>
