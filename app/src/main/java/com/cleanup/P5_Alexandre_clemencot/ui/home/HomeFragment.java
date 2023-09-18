@@ -3,6 +3,9 @@ package com.cleanup.P5_Alexandre_clemencot.ui.home;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -48,6 +51,12 @@ public class HomeFragment extends Fragment {
     private SortMethod sortMethod = SortMethod.NONE;
 
     @Override
+    public void onCreate (Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -61,7 +70,38 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Observe la liste de meeting
+
+        binding.toolbar.inflateMenu(R.menu.actions);
+
+        binding.toolbar.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.filter_recent_first: {
+                    sortMethod = SortMethod.RECENT_FIRST;
+                    break;
+                }
+                case R.id.filter_oldest_first: {
+                    sortMethod = SortMethod.OLD_FIRST;
+                    break;
+                }
+                case R.id.filter_alphabetical:{
+                    sortMethod = SortMethod.ALPHABETICAL;
+                    break;
+                }
+                case R.id.filter_alphabetical_inverted: {
+                    sortMethod = SortMethod.ALPHABETICAL_INVERTED;
+                    break;
+                }
+                default: {
+                    sortMethod = SortMethod.NONE;
+                    break;
+                }
+            }
+            updateTasks();
+            return super.onOptionsItemSelected(item);
+        });
+
+
+    // Observe la liste de tâches
         homeViewModel.getTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {

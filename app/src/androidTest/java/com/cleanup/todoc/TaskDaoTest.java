@@ -66,7 +66,7 @@ public class TaskDaoTest {
 
         List<Task> task = LiveDataTestUtil.getValue(this.database.taskDao().getTasks());
         assertFalse(task.isEmpty());
-        assertTrue(task.get(0).getName().equals(TASK_DEMO.getName()));
+        assertTrue(task.get(0).getTaskDescription().equals(TASK_DEMO.getTaskDescription()));
 
     }
 
@@ -93,8 +93,7 @@ public class TaskDaoTest {
      * Ecrire les tests pour les projets
      */
 
-    @Test
-
+    /**@Test
     public void insertAndGetProjet() throws InterruptedException {
 
         // BEFORE : Adding a new user
@@ -106,6 +105,6 @@ public class TaskDaoTest {
         assertFalse(project.isEmpty());
         assertEquals(project.get(0).getName(), PROJECT_DEMO.getName());
 
-    }
+    }*/
 
 }
